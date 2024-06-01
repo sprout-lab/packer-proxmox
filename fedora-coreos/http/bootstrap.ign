@@ -1,0 +1,40 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "sudo",
+          "wheel"
+        ],
+        "name": "core",
+        "passwordHash": "$y$j9T$fTuY6Vf5qmoZHxUppauMf/$OajnzMY27TbXNptx.OcAfXa.MBOtLXbmNWAgXKN1gm1",
+        "sshAuthorizedKeys": [
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/docker/daemon.json",
+        "contents": {
+          "compression": "",
+          "source": "data:;base64,ewogICJkYXRhLXJvb3QiOiAiL3RtcC9kb2NrZXIiCn0gICAK"
+        },
+        "mode": 384
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=Runs qemu guest agent inside docker\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=docker run -d --privileged --network host -v /dev/virtio-ports/org.qemu.guest_agent.0:/dev/virtio-ports/org.qemu.guest_agent.0  eleh/qemu-guest-agent\n[Install]\nWantedBy=multi-user.target  ",
+        "enabled": true,
+        "name": "qemu-guest-agent.service"
+      }
+    ]
+  }
+}

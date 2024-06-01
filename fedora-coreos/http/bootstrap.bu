@@ -1,0 +1,34 @@
+variant: fcos
+version: 1.5.0
+storage:
+  files:
+    - path: /etc/docker/daemon.json
+      mode: 0600
+      contents:
+        inline: |
+          {
+            "data-root": "/tmp/docker"
+          }   
+
+passwd:
+  users:
+    - name: core
+      groups:
+        - sudo
+        - wheel
+      password_hash: $y$j9T$fTuY6Vf5qmoZHxUppauMf/$OajnzMY27TbXNptx.OcAfXa.MBOtLXbmNWAgXKN1gm1
+      ssh_authorized_keys:
+        - TODO
+systemd:
+  units:
+    - name: qemu-guest-agent.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Runs qemu guest agent inside docker
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=docker run -d --privileged --network host -v /dev/virtio-ports/org.qemu.guest_agent.0:/dev/virtio-ports/org.qemu.guest_agent.0  eleh/qemu-guest-agent
+        [Install]
+        WantedBy=multi-user.target  
