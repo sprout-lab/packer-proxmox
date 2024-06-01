@@ -44,13 +44,13 @@ source "proxmox-iso" "ubuntu-server-24" {
     node = "proxmox-forest"
     vm_name = var.prod ? "ubuntu-24-prod" : "ubuntu-24"
     template_description = "Ubuntu Server Noble Numbat"
-    tags = var.prod ? "prod" : "non-prod" + ";ubuntu"
+    tags = "${var.prod ? "prod" : "non-prod"};ubuntu"
 
     # VM Settings
     iso_file = "local:iso/ubuntu-24.04-live-server-amd64.iso"
     iso_storage_pool = "local"
     unmount_iso = true
-    template_name = "packer-ubuntu-24"
+    template_name = "ubuntu-24-${var.prod ? "prod" : "non-prod"}"
     scsi_controller = "virtio-scsi-pci"
     disks {
         disk_size = "20G"
