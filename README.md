@@ -1,4 +1,4 @@
-# vm-templates
+# 🌱 packer-proxmox
 
 VM Templates for Sprout Lab, made with [Hashicorp Packer](https://developer.hashicorp.com/packer) and the [proxmox plugin](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox/latest/components/builder/iso).
 
