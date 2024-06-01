@@ -2,12 +2,15 @@
 
 VM Templates for Sprout Lab, made with [Hashicorp Packer](https://developer.hashicorp.com/packer) and the [proxmox plugin](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox/latest/components/builder/iso).
 
-#### Prerequisites
+### Prerequisites
+
+#### Dependencies
 ```
 brew tap hashicorp/tap
 brew install hashicorp/tap/packer
 brew install just
 ```
+#### Environment Variables
 Create `.auto.pkrvars.hcl` files in each OS:
 
 `ubuntu/.auto.pkrvars.hcl`
@@ -15,6 +18,11 @@ Create `.auto.pkrvars.hcl` files in each OS:
 proxmox_api_url          = "https://proxmox-forest:8006/api2/json"
 proxmox_api_token_id     = "packer@pve!packerToken"
 proxmox_api_token_secret = "...Stored in Bitwarden..."
+```
+#### SSH Key
+Generate the public and private key that each OS will use:
+```
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_ubuntu
 ```
 
 ### VM's Supported
