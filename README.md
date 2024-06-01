@@ -25,7 +25,7 @@ proxmox_api_token_secret = "...Stored in Bitwarden..."
 | Fedora CoreOS | 40      | Hobby   |
 
 ### Create VM Templates in Proxmox
-Create's all of the VM templates.
+Create's all of the VM templates. 
 ```
 just build
 ```
@@ -38,6 +38,8 @@ Or, to create prodction-workload VM templates:
 ```
 just build-prod
 ```
+> [!NOTE] 
+> [https://just.systems/](https://just.systems/) is used for the cli tasks.
 
 ### Environment Templates
 Each template can produce both Production and Preview (default) VM templates, with more memory and CPU being dedicated to prod VMs.
@@ -53,6 +55,3 @@ VM ID between 100-199.
 
 #### 200 - Preview
 VM ID between 200-299.
-
-
-
